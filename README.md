@@ -1,4 +1,4 @@
-# Página de ventas: Una Sola Lista y Próximo Paso
+# cmpsolutions.io: página de ventas
 
 Sitio estático de una sola página. No necesita compilación: todo está en `index.html`.
 

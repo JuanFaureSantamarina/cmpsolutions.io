@@ -131,12 +131,14 @@ h1 mark{background:none;color:var(--yellow);position:relative;white-space:nowrap
 .js .steps li.in::before{transform:scaleX(1)}
 .steps .num{font:900 54px/1 var(--display);color:var(--blue)}
 .steps p{font-size:16px;color:var(--muted)}
-.ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:32px;align-items:stretch}
-.tbl{border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:15px;background:var(--card)}
+.ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:32px;align-items:stretch}
+@media (min-width:900px){.ba{grid-template-columns:1.5fr 1fr}}
+.tbl{border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:16.5px;background:var(--card);display:flex;flex-direction:column}
+.tbl .r{flex:1}
 .tbl .r{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-top:1px solid #ECEBE4}
-.tbl .r span{padding:13px 14px}
+.tbl .r span{padding:16px 18px;display:flex;align-items:center}
 .tbl .r span:first-child{font-weight:600}.tbl .r span:nth-child(2){color:var(--muted)}.tbl .r span:nth-child(3){background:var(--blue-soft)}
-.tbl .h{background:var(--ink);color:#fff;font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;border:0}
+.tbl .h{flex:none;background:var(--ink);color:#fff;font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;border:0}
 .tbl .h span,.tbl .h span:nth-child(2){color:#fff;background:none;font-weight:400}.tbl .h span:nth-child(3){background:none;color:var(--yellow)}
 .photo{border-radius:14px;min-height:300px;background-color:#C9CCD6;background-size:cover;background-position:center;overflow:hidden}
 
@@ -321,6 +323,7 @@ footer nav{display:flex;gap:20px}
   .mob{display:block;position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(245,244,239,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 16px}
   .mob .btn{width:100%;background:var(--blue);color:#fff}
   .head{margin-bottom:36px}
+  .tbl{font-size:14.5px}.tbl .r span{padding:12px 10px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -444,11 +447,11 @@ footer nav{display:flex;gap:20px}
     <div class="ba">
       <div class="tbl reveal">
         <div class="r h"><span>Tarea</span><span>Antes</span><span>Después</span></div>
-        <div class="r"><span>Responder qué entra</span><span>Abrir lista por lista</span><span>Cargar anticipo y cuota</span></div>
-        <div class="r"><span>Saber si el precio vale</span><span>Preguntar a la desarrolladora</span><span>Fecha de cada lista a la vista</span></div>
-        <div class="r"><span>Comparar planes distintos</span><span>Cuenta a mano</span><span>La misma cuenta para todos</span></div>
-        <div class="r"><span>Mandar opciones</span><span>Capturas sueltas</span><span>Una hoja para imprimir o compartir</span></div>
-        <div class="r"><span>Seguir al cliente</span><span>La memoria del broker</span><span>Próximo paso con fecha</span></div>
+        <div class="r"><span>Decir qué entra</span><span>Lista por lista</span><span>Anticipo y cuota</span></div>
+        <div class="r"><span>Confirmar el precio</span><span>Llamar y preguntar</span><span>Fecha de lista a la vista</span></div>
+        <div class="r"><span>Comparar planes</span><span>Cuenta a mano</span><span>Misma cuenta para todos</span></div>
+        <div class="r"><span>Enviar opciones</span><span>Capturas sueltas</span><span>Una hoja para compartir</span></div>
+        <div class="r"><span>Seguir al cliente</span><span>De memoria</span><span>Próximo paso con fecha</span></div>
       </div>
       <div class="photo reveal" role="img" aria-label="Pareja mirando opciones en una tablet" style="background-image:url('https://images.unsplash.com/photo-1758523671391-c510afb87d19?auto=format&fit=crop&w=1400&q=70')"></div>
     </div>

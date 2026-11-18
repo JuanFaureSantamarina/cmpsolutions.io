@@ -12,7 +12,7 @@ Sitio estático de una sola página. No necesita compilación: todo está en `in
 
 - Reemplazar todo lo que está resaltado entre corchetes: precios, garantía, cupos, nombre, historia, plazos, mail y WhatsApp.
 - Poner el número de WhatsApp en la constante `WHATSAPP` al principio del `<script>` de `index.html` (con código de país, sin signos). Sin ese número, el formulario solo muestra la confirmación y no envía nada.
-- Reemplazar el bloque `.portrait` por la foto real.
+- Sumar tu retrato en la sección "Quién lo hace" (hoy va sin foto para no dejar un recuadro vacío).
 - Verificar nombre, dominio y marca.
 
 ## Reglas del contenido

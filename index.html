@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Una Sola Lista</title>
+<title>CMP Solutions</title>
 <meta name="description" content="Todo tu portfolio de pozo, comparable y al día. Una Sola Lista y CRM a medida para inmobiliarias que comercializan 3 o más desarrolladoras.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -140,7 +140,9 @@ h1 mark{background:none;color:var(--yellow);position:relative;white-space:nowrap
 .tbl .r span:first-child{font-weight:600}.tbl .r span:nth-child(2){color:var(--muted)}.tbl .r span:nth-child(3){background:var(--blue-soft)}
 .tbl .h{flex:none;background:var(--ink);color:#fff;font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;border:0}
 .tbl .h span,.tbl .h span:nth-child(2){color:#fff;background:none;font-weight:400}.tbl .h span:nth-child(3){background:none;color:var(--yellow)}
-.photo{border-radius:14px;min-height:300px;background-color:#C9CCD6;background-size:cover;background-position:center;overflow:hidden}
+.photo{margin:0;border-radius:14px;min-height:300px;overflow:hidden;position:relative;background:var(--ink)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ba.noimg{grid-template-columns:1fr}.ba.noimg .photo{display:none}
 
 /* 6. Demo */
 .demo{background:var(--ink2);border:1px solid var(--line-d);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:26px}
@@ -238,7 +240,8 @@ h1 mark{background:none;color:var(--yellow);position:relative;white-space:nowrap
 .t4 strong{color:#fff;display:block;font:700 20px var(--display);margin-bottom:4px}
 
 /* 11. Quién */
-.who{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:56px;align-items:center}
+.who{display:block}
+.who-copy{max-width:760px}
 .portrait{aspect-ratio:4/5;max-width:380px;width:100%;border-radius:18px;background:linear-gradient(160deg,var(--blue) 0%,var(--ink) 100%);display:flex;align-items:flex-end;padding:20px;color:#D5DAEA;font-family:var(--mono);font-size:13px}
 .who-copy{display:flex;flex-direction:column;gap:16px}
 
@@ -453,7 +456,7 @@ footer nav{display:flex;gap:20px}
         <div class="r"><span>Enviar opciones</span><span>Capturas sueltas</span><span>Una hoja para compartir</span></div>
         <div class="r"><span>Seguir al cliente</span><span>De memoria</span><span>Próximo paso con fecha</span></div>
       </div>
-      <div class="photo reveal" role="img" aria-label="Pareja mirando opciones en una tablet" style="background-image:url('https://images.unsplash.com/photo-1758523671391-c510afb87d19?auto=format&fit=crop&w=1400&q=70')"></div>
+      <figure class="photo reveal" id="ba-photo"><img src="https://images.unsplash.com/photo-1758523671391-c510afb87d19?auto=format&fit=crop&w=1400&q=70" alt="Pareja mirando opciones en una tablet" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -581,7 +584,6 @@ footer nav{display:flex;gap:20px}
 <!-- 11. Quién lo hace -->
 <section class="sec white">
   <div class="wrap who">
-    <div class="portrait reveal">[TU FOTO: retrato mirando a cámara, fondo de oficina o de obra]</div>
     <div class="who-copy reveal">
       <p class="eyebrow">Quién lo hace</p>
       <h2>Lo hago yo, no un equipo de soporte</h2>
@@ -743,7 +745,7 @@ footer nav{display:flex;gap:20px}
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); if (e.target.id === 'tiles') drawTiles(true); } });
-    }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
+    }, { threshold: 0.08 });
     targets.forEach(function(t){ io.observe(t); });
     var chat = $('#chat');
     var cio = new IntersectionObserver(function(es){
@@ -755,6 +757,14 @@ footer nav{display:flex;gap:20px}
     targets.forEach(function(t){ t.classList.add('in'); });
     $$('#chat .msg, #chat .gap').forEach(function(m){ m.classList.add('show'); });
   }
+
+  /* Si la foto no carga, la tabla ocupa todo el ancho */
+  (function(){
+    var fig = $('#ba-photo'); if (!fig) return;
+    var im = $('img', fig), off = function(){ fig.parentNode.classList.add('noimg'); };
+    im.addEventListener('error', off);
+    if (im.complete && im.naturalWidth === 0 && im.currentSrc) off();
+  })();
 
   /* Datos ficticios de la demo */
   var REF = 2150;
@@ -777,7 +787,7 @@ footer nav{display:flex;gap:20px}
   function esc(s){ return String(s).replace(/[&<>"]/g, function(ch){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[ch]; }); }
 
   /* Tarjeta del hero: tres compradores en loop */
-  var SC = [[30000,1600],[20000,1000],[50000,3200]], si = 0;
+  var SC = [[30000,1600],[35000,2200],[50000,3200]], si = 0;
   function heroCard(){
     var a = SC[si][0], c = SC[si][1], ok = calc(a, c).filter(function(r){ return r.ok; });
     $('#hc-a').textContent = 'Anticipo USD ' + fmt(a);
